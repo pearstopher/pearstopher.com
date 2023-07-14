@@ -1,0 +1,10 @@
+.idea/
+# ignore everything in the wp-content folder
+# except specific themes/plugins
+wp-content/*
+!wp-content/plugins/
+!wp-content/themes/
+wp-content/plugins/*
+wp-content/themes/*
+!wp-content/plugins/pears-plugin/
+!wp-content/themes/pears-theme/
