@@ -1,5 +1,7 @@
 .idea/
 .env
+node_modules/
+
 # ignore everything in the wp-content folder
 # except specific themes/plugins
 wp-content/*

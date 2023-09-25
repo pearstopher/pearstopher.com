@@ -1,0 +1,10 @@
+{
+  "name": "pearstopher.com",
+  "version": "1.0.0",
+  "devDependencies": {
+    "prettier": "3.0.3"
+  },
+  "dependencies": {
+    "@prettier/plugin-php": "^0.20.1"
+  }
+}
