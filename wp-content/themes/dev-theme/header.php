@@ -7,6 +7,37 @@
     <title><?php echo get_bloginfo("name"); ?> | <?php echo get_bloginfo(
      "description"
  ); ?></title>
+    <script type="text/javascript">
+    window.onload = function() {
+
+    // Get a reference to the element you want to fix
+    var element = document.getElementById('header-nav');
+
+    // Get the original position of the element
+    var originalPosition = element.getBoundingClientRect().top;
+
+    // Add an event listener to track scroll position
+    window.addEventListener('scroll', function() {
+        // Get the current scroll position
+        var scrollPosition = window.scrollY || window.pageYOffset;
+
+        // Check if the element is at or above the top of the page
+        if (scrollPosition >= originalPosition) {
+            // Set the element's position to fixed
+            element.style.position = 'fixed';
+            element.style.top = '0';
+            element.style.left = '0';
+            element.style.width = '100%';
+            element.style.background = '#333';
+            element.style.margin = 'auto';
+        } else {
+            // Set the element's position back to its original spot
+            element.style.position = 'static';
+        }
+    });
+
+    }
+    </script>
     <?php wp_head(); ?>
 
 </head>
@@ -19,7 +50,7 @@
              "description"
          ); ?></p>
 
-        <nav>
+        <nav id="header-nav">
             <ul>
                 <?php
                 $menu_name = "primary-menu"; // Replace with the name of your menu
