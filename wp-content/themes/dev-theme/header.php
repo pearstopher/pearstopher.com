@@ -21,9 +21,25 @@
 
         <nav>
             <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <?php
+                $menu_name = "primary-menu"; // Replace with the name of your menu
+                $menu_items = get_menu_items_by_registered_slug($menu_name);
+
+                if ($menu_items) {
+                    foreach ($menu_items as $item) {
+                        $title = $item->title; // Get the title of the menu item
+                        $url = $item->url; // Get the URL of the menu item
+                        $target = $item->target; // Get the target attribute (e.g., _blank for new tab)
+                        $ID = $item->ID; // Get the target attribute (e.g., _blank for new tab)
+
+                        // Output the menu item
+                        echo "<li><a href='#$ID' target='$target'>$title</a></li>";
+                    }
+                } else {
+                    echo "<li>Menu not found.</li>";
+                }
+                ?>
+
             </ul>
         </nav>
     </header>
