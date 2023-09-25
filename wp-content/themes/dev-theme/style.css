@@ -30,6 +30,13 @@ nav ul li a {
   text-decoration: none;
 }
 
+a.anchor {
+  display: block;
+  position: relative;
+  top: -250px;
+  visibility: hidden;
+}
+
 main {
   flex: 1; /* Make the main content take up the remaining space */
   display: flex;
@@ -43,4 +50,5 @@ section {
   padding: 20px;
   width: 80%;
   max-width: 600px;
+  height: 1000px;
 }

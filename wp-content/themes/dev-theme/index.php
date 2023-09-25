@@ -4,6 +4,8 @@
 $args = [
     "post_type" => "page", // Specify that you want to retrieve pages
     "posts_per_page" => -1, // Retrieve all pages
+    "orderby" => "ID",
+    "order" => "asc",
 ];
 
 $pages_query = new WP_Query($args);
@@ -13,7 +15,8 @@ if ($pages_query->have_posts()) {
         $pages_query->the_post();
         // Display the title and content of each page
         ?>
-        <section id ="<?php the_ID(); ?>">
+        <section id ="section-<?php the_ID(); ?>">
+        <a class="anchor" id="<?php the_ID(); ?>"></a>
         <?php
         the_title("<h2>", "</h2>");
         the_content();

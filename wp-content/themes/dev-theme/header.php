@@ -30,10 +30,16 @@
                         $title = $item->title; // Get the title of the menu item
                         $url = $item->url; // Get the URL of the menu item
                         $target = $item->target; // Get the target attribute (e.g., _blank for new tab)
-                        $ID = $item->ID; // Get the target attribute (e.g., _blank for new tab)
+                        $ID = $item->ID; // this is the menu id not the page id
+
+                        // Only grab page IDs
+                        if ("page" !== $item->object) {
+                            continue;
+                        }
+                        $page_id = $item->object_id;
 
                         // Output the menu item
-                        echo "<li><a href='#$ID' target='$target'>$title</a></li>";
+                        echo "<li><a href='#$page_id' target='$target'>$title</a></li>";
                     }
                 } else {
                     echo "<li>Menu not found.</li>";
