@@ -14,7 +14,10 @@
     var element = document.getElementById('header-nav');
 
     // Get the original position of the element
-    var originalPosition = element.getBoundingClientRect().top;
+    var scrollPosition = window.scrollY || window.pageYOffset;
+    var originalPosition = element.getBoundingClientRect().top + scrollPosition;
+
+
 
     // Add an event listener to track scroll position
     window.addEventListener('scroll', function() {
