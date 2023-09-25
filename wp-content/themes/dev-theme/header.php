@@ -52,7 +52,7 @@
          <p class="site-description"><?php echo get_bloginfo(
              "description"
          ); ?></p>
-
+        <div id="nav-wrapper">
         <nav id="header-nav">
             <ul>
                 <?php
@@ -82,5 +82,6 @@
 
             </ul>
         </nav>
+        </div>
     </header>
     <main>
