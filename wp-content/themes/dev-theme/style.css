@@ -63,7 +63,6 @@ section {
   padding: 0px;
   width: 80%;
   max-width: 600px;
-  height: 1000px;
   box-shadow:
     rgba(0, 0, 0, 0.3) 0px 0px 8px -1px,
     rgba(0, 0, 0, 0.1) 4px 4px 2px -2px;
@@ -80,4 +79,21 @@ section .section-header h2 {
 }
 section .section-content {
   padding: 20px;
+}
+section .section-content figure {
+  box-shadow:
+    rgba(0, 0, 0, 0.3) 0px 0px 8px -1px inset,
+    rgba(0, 0, 0, 0.1) 4px 4px 2px -2px inset;
+  padding: 10px;
+  background: #efe;
+  border-radius: 20px;
+}
+section .section-content figure img {
+  border-radius: 15px;
+}
+
+section .section-content p {
+  padding: 10px;
+  text-align: justify;
+  text-indent: 1em;
 }
