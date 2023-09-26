@@ -9,6 +9,6 @@ wp-content/*
 !wp-content/themes/
 wp-content/plugins/*
 wp-content/themes/*
-!wp-content/plugins/dev-plugin.php
+!wp-content/plugins/dev-plugin/dev-plugin.php
 !wp-content/plugins/dev-plugin/
 !wp-content/themes/dev-theme/

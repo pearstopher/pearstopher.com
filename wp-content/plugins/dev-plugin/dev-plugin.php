@@ -75,7 +75,7 @@ function render_custom_meta_box($post)
 
     $custom_field_value = get_post_meta($post->ID, "demo_url", true);
     echo "<h4>Demo URL</h4>";
-    echo '<input type="text" name="project_url" value="' .
+    echo '<input type="text" name="demo_url" value="' .
         esc_attr($custom_field_value) .
         '" />';
 }
@@ -114,3 +114,70 @@ function save_custom_meta_box($post_id)
 }
 
 add_action("save_post", "save_custom_meta_box");
+
+function add_custom_image_meta_box()
+{
+    add_meta_box(
+        "custom-image-meta-box", // Unique ID for the meta box
+        "Custom Image Upload", // Title of the meta box
+        "render_custom_image_meta_box", // Callback function to render the meta box content
+        "pears_projects", // Post type where the meta box will be displayed
+        "normal", // Context (normal, advanced, side)
+        "high" // Priority (high, core, default, low)
+    );
+}
+add_action("add_meta_boxes", "add_custom_image_meta_box");
+
+function render_custom_image_meta_box($post)
+{
+    wp_nonce_field(
+        "custom_image_meta_box_nonce",
+        "custom_image_meta_box_nonce"
+    );
+
+    $custom_image_url = get_post_meta($post->ID, "custom_image_url", true);
+
+    echo '<label for="custom_image">Custom Image Upload</label>';
+    echo '<input type="text" id="custom_image_url" name="custom_image_url" value="' .
+        esc_attr($custom_image_url) .
+        '" />';
+    echo '<input type="button" class="button button-secondary" value="Upload Image" id="upload_custom_image_button" />';
+}
+
+function enqueue_custom_image_upload_script()
+{
+    wp_enqueue_media();
+    wp_enqueue_script(
+        "custom-image-upload-script",
+        plugin_dir_url(__FILE__) . "custom-image-upload.js",
+        ["jquery"],
+        null,
+        true
+    );
+}
+add_action("admin_enqueue_scripts", "enqueue_custom_image_upload_script");
+
+function save_custom_image_url($post_id)
+{
+    if (
+        !isset($_POST["custom_image_meta_box_nonce"]) ||
+        !wp_verify_nonce(
+            $_POST["custom_image_meta_box_nonce"],
+            "custom_image_meta_box_nonce"
+        )
+    ) {
+        return;
+    }
+
+    if (defined("DOING_AUTOSAVE") && DOING_AUTOSAVE) {
+        return;
+    }
+
+    if (!current_user_can("edit_post", $post_id)) {
+        return;
+    }
+
+    $custom_image_url = sanitize_text_field($_POST["custom_image_url"]);
+    update_post_meta($post_id, "custom_image_url", $custom_image_url);
+}
+add_action("save_post", "save_custom_image_url");
