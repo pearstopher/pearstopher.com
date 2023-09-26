@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Projects Plugin
+Plugin Name: Pears' Projects Plugin
 Description: Registers a custom post type for projects and adds a shortcode widget.
 Version: 1.0
 Author: Pearstopher
@@ -10,17 +10,17 @@ function register_custom_post_type()
 {
     $args = [
         "public" => true,
-        "label" => "Custom Posts",
-        "supports" => ["title", "editor", "custom-fields"], // Add any other supported features
+        "label" => "Pears' Projects",
+        "supports" => ["title", "editor"], // "custom-fields" lets you edit them manually
     ];
-    register_post_type("custom_post", $args);
+    register_post_type("pears_projects", $args);
 }
 add_action("init", "register_custom_post_type");
 
 function custom_posts_shortcode($atts)
 {
     $args = [
-        "post_type" => "custom_post",
+        "post_type" => "pears_projects",
         "posts_per_page" => -1, // Retrieve all posts
     ];
 
@@ -31,12 +31,13 @@ function custom_posts_shortcode($atts)
         while ($custom_posts->have_posts()) {
             $custom_posts->the_post();
             // Display custom post content
+            echo "<div class='projects'>";
             the_title();
             the_content();
+            echo "</div>";
         }
         wp_reset_postdata(); // Reset post data
     }
-
     return ob_get_clean(); // Return buffered output
 }
 add_shortcode("custom_posts", "custom_posts_shortcode");
@@ -44,10 +45,10 @@ add_shortcode("custom_posts", "custom_posts_shortcode");
 function add_custom_meta_box()
 {
     add_meta_box(
-        "custom-meta-box-id",
-        "Custom Meta Box Title",
+        "project_url",
+        "Project URL",
         "render_custom_meta_box",
-        "post",
+        "pears_projects",
         "normal",
         "high"
     );
@@ -56,11 +57,15 @@ function add_custom_meta_box()
 function render_custom_meta_box($post)
 {
     // Add a nonce field
-    wp_nonce_field("custom_meta_box_nonce", "custom_meta_box_nonce");
+    wp_nonce_field(
+        "pears_projects_meta_box_nonce",
+        "pears_projects_meta_box_nonce"
+    );
 
     // Render the content of the meta box
-    $custom_field_value = get_post_meta($post->ID, "custom_field_name", true);
-    echo '<input type="text" name="custom_field_name" value="' .
+    $custom_field_value = get_post_meta($post->ID, "project_url", true);
+    echo "<h4>Project URL</h4>";
+    echo '<input type="text" name="project_url" value="' .
         esc_attr($custom_field_value) .
         '" />';
 }
@@ -81,18 +86,18 @@ function save_custom_meta_box($post_id)
 
     // Check if the nonce field is set (for security)
     if (
-        !isset($_POST["custom_meta_box_nonce"]) ||
+        !isset($_POST["pears_projects_meta_box_nonce"]) ||
         !wp_verify_nonce(
-            $_POST["custom_meta_box_nonce"],
-            "custom_meta_box_nonce"
+            $_POST["pears_projects_meta_box_nonce"],
+            "pears_projects_meta_box_nonce"
         )
     ) {
         return;
     }
 
     // Sanitize and save the meta box data
-    $custom_field_value = sanitize_text_field($_POST["custom_field_name"]);
-    update_post_meta($post_id, "custom_field_name", $custom_field_value);
+    $custom_field_value = sanitize_text_field($_POST["project_url"]);
+    update_post_meta($post_id, "project_url", $custom_field_value);
 }
 
 add_action("save_post", "save_custom_meta_box");
