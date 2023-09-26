@@ -40,7 +40,7 @@ function custom_posts_shortcode($atts)
     }
     return ob_get_clean(); // Return buffered output
 }
-add_shortcode("custom_posts", "custom_posts_shortcode");
+add_shortcode("pears_projects", "custom_posts_shortcode");
 
 function add_custom_meta_box()
 {
