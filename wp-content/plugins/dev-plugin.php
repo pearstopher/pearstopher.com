@@ -28,14 +28,18 @@ function custom_posts_shortcode($atts)
     ob_start(); // Start output buffering
 
     if ($custom_posts->have_posts()) {
+        echo "<div id='project-container'>";
         while ($custom_posts->have_posts()) {
             $custom_posts->the_post();
             // Display custom post content
-            echo "<div class='projects'>";
+            echo "<div class='project-outer'>";
+            echo "<div class='project'>";
             the_title();
             the_content();
             echo "</div>";
+            echo "</div>";
         }
+        echo "</div>";
         wp_reset_postdata(); // Reset post data
     }
     return ob_get_clean(); // Return buffered output
@@ -65,6 +69,12 @@ function render_custom_meta_box($post)
     // Render the content of the meta box
     $custom_field_value = get_post_meta($post->ID, "project_url", true);
     echo "<h4>Project URL</h4>";
+    echo '<input type="text" name="project_url" value="' .
+        esc_attr($custom_field_value) .
+        '" />';
+
+    $custom_field_value = get_post_meta($post->ID, "demo_url", true);
+    echo "<h4>Demo URL</h4>";
     echo '<input type="text" name="project_url" value="' .
         esc_attr($custom_field_value) .
         '" />';
@@ -98,6 +108,9 @@ function save_custom_meta_box($post_id)
     // Sanitize and save the meta box data
     $custom_field_value = sanitize_text_field($_POST["project_url"]);
     update_post_meta($post_id, "project_url", $custom_field_value);
+
+    $custom_field_value = sanitize_text_field($_POST["demo_url"]);
+    update_post_meta($post_id, "demo_url", $custom_field_value);
 }
 
 add_action("save_post", "save_custom_meta_box");

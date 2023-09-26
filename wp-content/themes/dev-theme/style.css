@@ -120,13 +120,24 @@ section .section-content p {
   border-radius: 20px;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+}
+.project-outer {
+  flex-basis: 100%;
+  margin: 0px;
 }
 .project {
-  width: 300px;
-  height: 600px;
   box-shadow:
     rgba(0, 0, 0, 0.3) 0px 0px 8px -1px,
     rgba(0, 0, 0, 0.1) 4px 4px 2px -2px;
-  border-radius: 5px;
+  border-radius: 10px;
   background: #dcffcd;
+  margin: 10px;
+  padding: 10px;
+}
+
+@media screen and (min-width: 650px) {
+  .project-outer {
+    flex-basis: 50%;
+  }
 }
