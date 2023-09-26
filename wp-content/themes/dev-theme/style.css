@@ -9,6 +9,9 @@ body {
   color: #333;
   font-family: "Roboto", sans-serif;
 }
+img {
+  max-width: 100%;
+}
 
 header,
 footer {
@@ -75,7 +78,8 @@ section .section-header {
   padding: 0px 20px;
   background: #aef1ae;
 }
-section .section-header h2 {
+section .section-header h2,
+section .section-header h3 {
   padding: 0px 20px 0px 0px;
   margin: 20px 0px 0px 0px;
   /* text-transform: lowercase; */
@@ -133,7 +137,20 @@ section .section-content p {
   border-radius: 10px;
   background: #dcffcd;
   margin: 10px;
-  padding: 10px;
+}
+.project .spacer {
+  height: 1px;
+}
+.project .description {
+  padding: 20px;
+}
+.project .links {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.project .links span {
+  flex-basis: 50%;
 }
 
 @media screen and (min-width: 650px) {

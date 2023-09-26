@@ -34,8 +34,36 @@ function custom_posts_shortcode($atts)
             // Display custom post content
             echo "<div class='project-outer'>";
             echo "<div class='project'>";
-            the_title();
+            echo "<div class='spacer'></div>";
+
+            echo "<div class='section-header'>";
+            the_title("<h3>", "</h3>");
+            echo "</div>";
+
+            $img = get_post_meta(get_the_ID(), "custom_image_url", true);
+            if ($img) {
+                echo "<img src='" . $img . "' alt='' />";
+            }
+
+            echo "<div class='description'>";
             the_content();
+            echo "</div>";
+
+            echo "<div class='links'>";
+            $url = get_post_meta(get_the_ID(), "project_url", true);
+            if ($url) {
+                echo "<span><a href='" .
+                    $url .
+                    "' target='_blank'>Project Url</a></span>";
+            }
+            $url = get_post_meta(get_the_ID(), "demo_url", true);
+            if ($url) {
+                echo "<span><a href='" .
+                    $url .
+                    "' target='_blank'>Demo Url</a></span>";
+            }
+            echo "</div>";
+
             echo "</div>";
             echo "</div>";
         }
