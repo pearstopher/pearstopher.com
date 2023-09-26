@@ -109,3 +109,24 @@ section .section-content p {
     margin-left: 20px;
   }
 }
+
+/* projects css */
+#project-container {
+  box-shadow:
+    rgba(0, 0, 0, 0.3) 0px 0px 8px -1px inset,
+    rgba(0, 0, 0, 0.1) 4px 4px 2px -2px inset;
+  padding: 10px;
+  background: #efe;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+}
+.project {
+  width: 300px;
+  height: 600px;
+  box-shadow:
+    rgba(0, 0, 0, 0.3) 0px 0px 8px -1px,
+    rgba(0, 0, 0, 0.1) 4px 4px 2px -2px;
+  border-radius: 5px;
+  background: #dcffcd;
+}
