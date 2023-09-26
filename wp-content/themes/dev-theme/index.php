@@ -17,10 +17,12 @@ if ($pages_query->have_posts()) {
         ?>
         <section id ="section-<?php the_ID(); ?>">
         <a class="anchor" id="<?php the_ID(); ?>"></a>
-        <?php
-        the_title("<h2>", "</h2>");
-        the_content();
-        ?>
+        <div class="section-header">
+        <?php the_title("<h2>", "</h2>"); ?>
+        </div>
+        <div class="section-content">
+        <?php the_content("<p>", "</p>"); ?>
+        </div>
         </section>
         <?php
     }
