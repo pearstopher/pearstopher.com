@@ -158,3 +158,25 @@ section .section-content p {
     flex-basis: 50%;
   }
 }
+
+/* contact css */
+#pears-contact-form .input-wrapper {
+  box-shadow:
+    rgba(0, 0, 0, 0.3) 0px 0px 8px -1px inset,
+    rgba(0, 0, 0, 0.1) 4px 4px 2px -2px inset;
+  padding: 10px;
+  background: #efe;
+  border-radius: 10px;
+  margin: 10px 0px;
+  min-height: 30px;
+  text-align: center;
+}
+#pears-contact-form input {
+  width: 50px;
+}
+#pears-contact-form input[type="submit"] {
+  width: 100%;
+  background: #aef1ae;
+  height: 30px;
+  border-radius: 7px;
+}

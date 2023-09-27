@@ -8,23 +8,23 @@ Author: Pearstopher
 
 function pears_contact_form_shortcode()
 {
-    ob_start();// Output the contact form HTML
-    // Start output buffering
+    ob_start();// Start output buffering
+    // Output the contact form HTML
     ?>
     <p>I'm currently looking for work, but I'd love to hear from you for any reason!
     <form action="#" method="post" id="pears-contact-form">
-        <div>
+        <div class="input-wrapper">
         <label for="robot">I am a robot: </label>
         <input type="checkbox" checked="checked" name="robot" id="robot">
         </div>
-        <div>
+        <div class="input-wrapper">
         <label for="maths">Please enter any whole number between 68 and 70: </label>
         <input type="number" name="maths" id="maths" size="2" required>
         </div>
-        <div>
+        <div class="input-wrapper">
         <input type="submit" value="Submit">
         </div>
-        <div>
+        <div class="input-wrapper">
         <div id="results"></div>
         </div>
     </form>
