@@ -11,10 +11,22 @@ function pears_contact_form_shortcode()
     ob_start();// Output the contact form HTML
     // Start output buffering
     ?>
+    <p>I'm currently looking for work, but I'd love to hear from you for any reason!
     <form action="#" method="post" id="pears-contact-form">
-        <label for="email">Email Address:</label>
-        <input type="email" name="email" id="email" required>
+        <div>
+        <label for="robot">I am a robot: </label>
+        <input type="checkbox" checked="checked" name="robot" id="robot">
+        </div>
+        <div>
+        <label for="maths">Please enter any whole number between 68 and 70: </label>
+        <input type="number" name="maths" id="maths" size="2" required>
+        </div>
+        <div>
         <input type="submit" value="Submit">
+        </div>
+        <div>
+        <div id="results"></div>
+        </div>
     </form>
     <?php return ob_get_clean(); // Return the buffered output
 }
@@ -33,19 +45,19 @@ function enqueue_custom_script()
         jQuery(document).ready(function ($) {
           $("#pears-contact-form").on("submit", function (e) {
             e.preventDefault();
-            var email = $("#email").val();
+            var maths = $("#maths").val();
 
             $.ajax({
               url: "' .
         plugin_dir_url(__FILE__) .
         'process_email.php", // Plugin PHP file
               type: "POST",
-              data: { email: email },
+              data: { maths: maths },
               success: function (response) {
-                alert("Your email has been sent to " + response);
+                $("#results").html(response);
               },
               error: function () {
-                alert("An error occurred while processing your request.");
+                $("#results").html("A problem occurred. Sorry about that!");
               },
             });
           });
