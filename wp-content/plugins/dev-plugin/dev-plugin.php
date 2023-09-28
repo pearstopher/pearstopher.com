@@ -54,15 +54,16 @@ function custom_posts_shortcode($atts)
             if ($url) {
                 echo "<span><a href='" .
                     $url .
-                    "' target='_blank'>Project Url</a></span>";
+                    "' target='_blank'>GitHub</a></span>";
             }
             $url = get_post_meta(get_the_ID(), "demo_url", true);
             if ($url) {
                 echo "<span><a href='" .
                     $url .
-                    "' target='_blank'>Demo Url</a></span>";
+                    "' target='_blank'>Live Demo</a></span>";
             }
             echo "</div>";
+            echo "<div class='spacer'></div>";
 
             echo "</div>";
             echo "</div>";

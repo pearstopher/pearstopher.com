@@ -148,9 +148,15 @@ section .section-content p {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  background: #aef1ae;
+  margin-bottom: 5px;
 }
 .project .links span {
   flex-basis: 50%;
+  text-align: center;
+}
+.project .links span a {
+  /* text-decoration: none; */s
 }
 
 @media screen and (min-width: 650px) {
