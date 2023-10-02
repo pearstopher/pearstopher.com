@@ -8,8 +8,8 @@ Author: Pearstopher
 
 function pears_contact_form_shortcode()
 {
-    ob_start();// Start output buffering
-    // Output the contact form HTML
+    ob_start();// Output the contact form HTML
+    // Start output buffering
     ?>
     <p>I'm currently looking for work, but I'd love to hear from you for any reason!
     <form action="#" method="post" id="pears-contact-form">
@@ -20,6 +20,14 @@ function pears_contact_form_shortcode()
         <div class="input-wrapper">
         <label for="maths">Please enter any whole number between 68 and 70: </label>
         <input type="number" name="maths" id="maths" size="2" required>
+        </div>
+        <div class="input-wrapper">
+        <label for="email">My email is: </label>
+        <input type="email" name="email" id="email" required>
+        </div>
+        <div>
+        <label for="message" class="sr-only">Your Message:</label>
+        <textarea id="message" name="message" class="input-wrapper" rows="4" cols="50" maxlength="1900">Your message here</textarea>
         </div>
         <div class="input-wrapper">
         <input type="submit" value="Submit">
@@ -46,13 +54,15 @@ function enqueue_custom_script()
           $("#pears-contact-form").on("submit", function (e) {
             e.preventDefault();
             var maths = $("#maths").val();
+            var email = $("#email").val();
+            var message = $("#message").val();
 
             $.ajax({
               url: "' .
         plugin_dir_url(__FILE__) .
         'process_email.php", // Plugin PHP file
               type: "POST",
-              data: { maths: maths },
+              data: { maths: maths, email: email, message: message },
               success: function (response) {
                 $("#results").html(response);
               },
@@ -61,6 +71,19 @@ function enqueue_custom_script()
               },
             });
           });
+              $("#message").focus(function() {
+                  if ($(this).val() === "Your message here") {
+                      $(this).val("");
+                  }
+                  $(this).addClass("active");
+              });
+
+              $("#message").blur(function() {
+                  if ($(this).val() === "") {
+                      $(this).val("Your message here");
+                      $(this).removeClass("active");
+                  }
+              });
         });
     ';
 

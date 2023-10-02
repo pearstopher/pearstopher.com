@@ -13,6 +13,15 @@ img {
   max-width: 100%;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+}
+
 header,
 footer {
   padding-top: 10px;
@@ -156,7 +165,7 @@ section .section-content p {
   text-align: center;
 }
 .project .links span a {
-  /* text-decoration: none; */s
+  /* text-decoration: none; */
 }
 
 @media screen and (min-width: 650px) {
@@ -170,15 +179,23 @@ section .section-content p {
   box-shadow:
     rgba(0, 0, 0, 0.3) 0px 0px 8px -1px inset,
     rgba(0, 0, 0, 0.1) 4px 4px 2px -2px inset;
-  padding: 10px;
+  padding: 2.5%;
   background: #efe;
   border-radius: 10px;
   margin: 10px 0px;
   min-height: 30px;
   text-align: center;
+  width: 95%;
 }
-#pears-contact-form input {
+#pears-contact-form input#maths {
   width: 50px;
+}
+#pears-contact-form textarea.input-wrapper {
+  text-align: left;
+  color: grey;
+}
+#pears-contact-form textarea.input-wrapper.active {
+  color: #333;
 }
 #pears-contact-form input[type="submit"] {
   width: 100%;
