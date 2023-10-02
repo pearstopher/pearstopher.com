@@ -53,6 +53,8 @@ function enqueue_custom_script()
         jQuery(document).ready(function ($) {
           $("#pears-contact-form").on("submit", function (e) {
             e.preventDefault();
+            $("#results").parent().show();
+
             var maths = $("#maths").val();
             var email = $("#email").val();
             var message = $("#message").val();
@@ -64,10 +66,13 @@ function enqueue_custom_script()
               type: "POST",
               data: { maths: maths, email: email, message: message },
               success: function (response) {
+                $("#results").addClass("good");
                 $("#results").html(response);
+
               },
               error: function () {
                 $("#results").html("A problem occurred. Sorry about that!");
+                $("#results").addClass("bad");
               },
             });
           });
@@ -84,6 +89,8 @@ function enqueue_custom_script()
                       $(this).removeClass("active");
                   }
               });
+
+              $("#results").parent().hide();
         });
     ';
 

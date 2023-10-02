@@ -24,9 +24,7 @@ if (isset($_POST["maths"])) {
             // 200 successful
             // 201 created successfully
             // 204 successful, no content returned
-            echo "Discord notification sent successfully (" .
-                $response["body"] .
-                ") Your message and email address were received. ";
+            echo "Discord notification sent successfully. Your message and email address were received. ";
         } else {
             echo "Error: unable to send Discord notification. I'll look into that right away. In the meantime, my email is pearstopher@gmail.com.";
 
