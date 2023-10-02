@@ -47,7 +47,7 @@
 
 <body>
     <header>
-        <img alt="" src="https://pearstopher.com/wp-content/uploads/2020/09/pear_cutout_125.png" />
+        <img alt="" src="<?php echo get_template_directory_uri(); ?>/pear_cutout_125.png" alt="Logo">
          <h1 class="site-title"><?php echo get_bloginfo("name"); ?></h1>
          <p class="site-description"><?php echo get_bloginfo(
              "description"
