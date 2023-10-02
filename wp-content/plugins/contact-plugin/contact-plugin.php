@@ -8,8 +8,8 @@ Author: Pearstopher
 
 function pears_contact_form_shortcode()
 {
-    ob_start();// Start output buffering
-    // Output the contact form HTML
+    ob_start();// Output the contact form HTML
+    // Start output buffering
     ?>
     <form action="#" method="post" id="pears-contact-form">
         <div class="input-wrapper">
@@ -29,7 +29,7 @@ function pears_contact_form_shortcode()
         <input type="checkbox" name="checkbox" id="checkbox">
         </div>
         <div class="input-wrapper">
-        <input type="submit" value="Submit">
+        <input type="submit" value="Message Me">
         </div>
         <div class="input-wrapper">
         <div id="results"></div>
