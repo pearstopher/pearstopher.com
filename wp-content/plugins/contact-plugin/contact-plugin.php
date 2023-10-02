@@ -8,26 +8,25 @@ Author: Pearstopher
 
 function pears_contact_form_shortcode()
 {
-    ob_start();// Output the contact form HTML
-    // Start output buffering
+    ob_start();// Start output buffering
+    // Output the contact form HTML
     ?>
-    <p>I'm currently looking for work, but I'd love to hear from you for any reason!
     <form action="#" method="post" id="pears-contact-form">
         <div class="input-wrapper">
-        <label for="robot">I am a robot: </label>
-        <input type="checkbox" checked="checked" name="robot" id="robot">
-        </div>
-        <div class="input-wrapper">
-        <label for="maths">Please enter any whole number between 68 and 70: </label>
-        <input type="number" name="maths" id="maths" size="2" required>
-        </div>
-        <div class="input-wrapper">
-        <label for="email">My email is: </label>
+        <label for="email">Just put your email address here: </label>
         <input type="email" name="email" id="email" required>
         </div>
         <div>
         <label for="message" class="sr-only">Your Message:</label>
-        <textarea id="message" name="message" class="input-wrapper" rows="4" cols="50" maxlength="1900">Your message here</textarea>
+        <textarea id="message" name="message" class="input-wrapper" rows="4" cols="50" maxlength="1900">Write your message here...</textarea>
+        </div>
+        <div class="input-wrapper">
+        <label for="maths">Type any integer between 68 and 70 to prove you're human: </label>
+        <input type="number" name="maths" id="maths" size="2" required>
+        </div>
+        <div class="input-wrapper">
+        <label for="robot">Click here if you like checkboxes: </label>
+        <input type="checkbox" name="checkbox" id="checkbox">
         </div>
         <div class="input-wrapper">
         <input type="submit" value="Submit">
@@ -76,21 +75,32 @@ function enqueue_custom_script()
               },
             });
           });
-              $("#message").focus(function() {
-                  if ($(this).val() === "Your message here") {
-                      $(this).val("");
-                  }
-                  $(this).addClass("active");
-              });
 
-              $("#message").blur(function() {
-                  if ($(this).val() === "") {
-                      $(this).val("Your message here");
-                      $(this).removeClass("active");
-                  }
-              });
+          $("#message").focus(function() {
+              if ($(this).val() === "Write your message here...") {
+                  $(this).val("");
+              }
+              $(this).addClass("active");
+          });
 
-              $("#results").parent().hide();
+          $("#message").blur(function() {
+              if ($(this).val() === "") {
+                  $(this).val("Write your message here...");
+                  $(this).removeClass("active");
+              }
+          });
+
+          $("#results").parent().hide();
+
+
+        });
+
+        let counter = 1;
+        jQuery(document).on("change", "#checkbox, .additional-checkbox", function() {
+              if (this.checked) {
+                  jQuery("#checkbox").parent().append("<div><label for=\"checkbox-" + counter + "\">Click here if you like checkboxes: </label><input type=\"checkbox\" name=\"checkbox-" + counter + "\" class=\"additional-checkbox\" /></div>");
+                  counter += 1;
+              }
         });
     ';
 
