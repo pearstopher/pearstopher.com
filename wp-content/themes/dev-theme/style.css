@@ -116,7 +116,6 @@ section .section-content figure img {
 
 section .section-content p {
   padding: 10px;
-  text-align: justify;
   text-indent: 1em;
   margin: 0px;
 }
@@ -198,7 +197,7 @@ section .section-content p {
 }
 #pears-contact-form textarea.input-wrapper {
   text-align: left;
-  color: grey;
+  color: darkgreen;
 }
 #pears-contact-form textarea.input-wrapper.active {
   color: #333;
